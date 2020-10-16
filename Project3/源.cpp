@@ -1,3 +1,4 @@
+/*
 #include<stdio.h>
 #include<string.h>
 #define ElemType int
@@ -61,8 +62,8 @@ int add(int num1, int num2)
 }
 
 
-
-int main()
+//大整数加法
+int main1()
 {
 	int a[2] = { 0 }, b[2] = { 0 }, c[3] = { 0 }, num1, num2, flag = 0;
 	scanf("%d %d", &num1, &num2);
@@ -71,7 +72,26 @@ int main()
 	return 0;
 }
 
+//完数
+int main2()
+{
+	int sum = 0;
+	for (int i = 2; i <= 100; i++) {
+		int num = 0;
+		for (int j = i - 1; j >= 1; j--) {
+			if (i % j == 0) {
+				num += j;
+			}
+		}
+		if (num == i) {
+			printf("%d ", num);
+			sum++;
+		}
 
+	}
+	printf("\n%d", sum);
+	return 0;
+}
 
 /*
 int main()
