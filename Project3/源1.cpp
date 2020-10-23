@@ -116,7 +116,7 @@ data max1(data a, data b) {
 
 
 //给定同一年当中的任意两个日期，计算间隔的天数（模块接收 5 个参数：year-年、month1-月份1、day1-日期1、month2-月份2、day2-日期2）
-int main7()
+int data1()
 {
 	int num[12] = { 31 ,28,31,30,31,30,31,31,30,31,30,31 };
 	int year, month1, day1, month2, day2 ,sum = 0;
@@ -130,9 +130,9 @@ int main7()
 		sum = sum + (num[min1(da[0], da[1]).month - 1] - min1(da[0], da[1]).day);
 		sum += max1(da[0], da[1]).day;
 	}
-	if (ifrun(year) == 1)
+	if (ifrun(year) == 1 && min1(da[0],da[1]).month<=2)
 		sum++;
-	sum++;
+
 	printf("%d", sum);
 	return 0;
 }
@@ -172,9 +172,7 @@ int main8()
 
 //编写程序实现大整数的加法和减法运算。（25分）（大整数为 40 到 100 位之间的十进制数）contrast
 
-
-
-int main()
+int main9()
 {
 	char a[101] = { 0 }, b[101] = { 0 };
 	int num1[101] = { 0 }, num2[101] = { 0 },len;
@@ -218,4 +216,39 @@ int main()
 	for (int i = len-1; i >= 0; i--)
 		printf("%d", num3[i]);
 	return 0;
+}
+
+/*
+【问题描述】输入两个整数m和n，分别输入m和n个浮点数，取m个浮点数中的前4个数据和n个浮点数中的后3个数据重新组成一组新数据，并将新数据按升序输出。（3 < m < 10, 2 < n < 10）
+	【输入形式】输入整数m和n，并分别输入m和n个浮点数。
+	【输出形式】输出新组成的数据，输出保留一位小数。
+	【样例输入】6 5 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0
+	【样例输出】1.0 2.0 3.0 4.0 9.0 10.0 11.0
+
+	【样例输入】4 3 5.2 1.2 4.6 2.0 1.9 8.7 5.4
+
+	【样例输出】1.2 1.9 2.0 4.6 5.2 5.4 8.7
+	*/
+int main10() 
+{
+	float a[10], b[10];
+	int N,M;
+	scanf("%d %d", &N,&M);
+
+}
+
+
+//设有两个动态实现的顺序表 L1， L2 各存储递增有序的一组整形数。现要求将 L2 合并到 L1 ，且合并后的 L1 仍然保持递增有序。请编程实现。（15分）
+
+struct Link {
+	int num[100];
+	int lenth;
+};
+
+int main()
+{
+	Link link[3] = { 0 };
+	for (int i = 0; j = 0; i < link[0].lenth && j < link[1].lenth;) {
+		if()
+	}
 }
