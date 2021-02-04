@@ -75,9 +75,9 @@ int ifquan(int n)
 }
 
 //数组元素去重。假设某数组有 10 个整数，要求对于相同的元素，仅保留第一次出的元素，删除其余的重复元素。保持数组的整体顺序不变。
-int main4()
+int main112()
 {
-	int num1[10], num2[10],sum = 10;
+	int num1[10],sum = 10;
 	for (int i = 0; i < sum;i++ )
 		scanf("%d", &num1[i]);
 	for (int i = 0; i < sum; i++) {
@@ -116,7 +116,7 @@ data max1(data a, data b) {
 
 
 //给定同一年当中的任意两个日期，计算间隔的天数（模块接收 5 个参数：year-年、month1-月份1、day1-日期1、month2-月份2、day2-日期2）
-int data1()
+int main121()
 {
 	int num[12] = { 31 ,28,31,30,31,30,31,31,30,31,30,31 };
 	int year, month1, day1, month2, day2 ,sum = 0;
@@ -138,6 +138,8 @@ int data1()
 }
 
 //输入 5 名学生的信息（学号、成绩、年龄）、按照学生的成绩进行排序，然后输出这 5 名学生的信息（用结构体来存储学生信息）。
+#include<algorithm>
+using namespace std;
 
 struct student {
 	int num;
@@ -145,20 +147,26 @@ struct student {
 	int age;
 }stu[5];
 
+bool cmp(student a, student b) {
+	return a.score > b.score;
+}
+
+/*
 int cmp(void const* a, void const* b)
 {
 	student* _a = (student*)a;
 	student* _b = (student*)b;
-	return _a->score > _b->score;
+	return _a->score - _b->score;
 }
-
-int main6()
+*/
+int main()
 {
 	for (int i = 0; i < 5; i++) 
 		scanf("%d %d %d", &stu[i].num, &stu[i].score, &stu[i].age);
-	qsort(stu, 5, sizeof(student), cmp);
+	sort(stu,stu+5*sizeof(student),cmp);
 	return 0;
 }
+
 //输入一个合理的年、月、日，计算日期距离 1970.1.1 的天数（20分）
 int main8()
 {
@@ -234,21 +242,259 @@ int main10()
 	float a[10], b[10];
 	int N,M;
 	scanf("%d %d", &N,&M);
-
+	return 0;
 }
 
 
 //设有两个动态实现的顺序表 L1， L2 各存储递增有序的一组整形数。现要求将 L2 合并到 L1 ，且合并后的 L1 仍然保持递增有序。请编程实现。（15分）
-
+#define MAXSIZE 100
 struct Link {
 	int num[100];
 	int lenth;
 };
 
-int main()
+
+
+bool merge(Link a, Link b, Link& c) {
+	if (a.lenth + b.lenth > MAXSIZE)
+		return false;
+	int i = 0, j = 0, k = 0;
+}
+
+
+int link()
 {
 	Link link[3] = { 0 };
-	for (int i = 0; j = 0; i < link[0].lenth && j < link[1].lenth;) {
-		if()
+	for (int i = 0; i < 3; i++)
+		scanf("%d", &link[0].num[i]);
+	for (int i = 0; i < 5; i++)
+		scanf("%d", &link[1].num[i]);
+	link[0].lenth = 3;
+	link[1].lenth = 5;
+	int i = 0, j = 0, k = 0;
+	for (; i < link[0].lenth && j < link[1].lenth;k++) {
+		if (link[0].num[i] > link[1].num[j]) {
+			link[2].num[k] = link[1].num[j];
+			link[2].lenth++;
+			j++;
+		}
+		else {
+			link[2].num[k] = link[0].num[i];
+			link[2].lenth++;
+			i++;
+		}
 	}
+	while (i < link[0].lenth) {
+		link[2].num[k++] = link[0].num[i++];
+		link[2].lenth++;
+	}
+	while (j < link[1].lenth) {
+		link[2].num[k++] = link[1].num[j++];
+		link[2].lenth++;
+	}
+	for (int i = 0; i < link[2].lenth; i++)
+		printf("%d ", link[2].num[i]);
+	return 0;
+}
+#define Element int
+
+struct SqLink {
+	int num[100] = {1,3,4,5};
+	int lenth = 4;
+}a;
+//设线性表 L 以顺序存储结构存储，请编程实现在表 L 中的第 i 个元素前插入一个新的数据元素 e。 （1 <= i <= n+1）（10分）
+int Insert(SqLink* a, int n, Element e) {
+	if (n > a->lenth)
+		return 1;
+	for (int i = a->lenth; i >= n; i--)
+		a->num[i] = a->num[i - 1];
+	a->num[n - 1] = e;
+	return 0;
+}
+int main111()
+{
+	int n, e;
+	scanf("%d %d", &n, &e);
+	Insert(&a, n, e);
+	return 0;
+}
+
+//输入一个 3 x 3 的矩阵，将每行中最大的数字放到该行的第一的位置上，然后输出该矩阵
+int juzhen()
+{
+	double num[3][3],max,temp;
+	int k=0;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++)
+			scanf("%lf", &num[i][j]);
+	}
+	for (int i = 0; i < 3; i++) {
+		k = 0;
+		max = num[i][0];
+		for (int j = 1; j < 3; j++) {
+			if (num[i][j] > max) {
+				max = num[i][j];
+				k = j;
+			}
+		}
+		temp = num[i][0];
+		num[i][0] = max;
+		num[i][k] = temp;
+	}
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++)
+			printf("%.1lf ", num[i][j]);
+		printf("\n");
+	}
+	return 0;
+}
+struct lian {
+	Element num;
+	lian* next;
+};
+//在一个升序的链表中插入一个元素，要求插入任意元素后使得链表依然保存升序（假设链表有 5 个元素）
+#define MAXsize 5
+int insert(lian *head,Element e)
+{
+	lian* Node = head->next,*temp;
+	for (int i = 0; i < MAXsize-1; i++) {
+		if (Node->next->num >= e) {
+			temp = Node->next;
+			Node->next = (lian*)malloc(sizeof(lian));
+			Node = Node->next;
+			Node->num = e;
+			Node->next = temp;
+			return 1;
+		}
+		Node = Node->next;
+	}
+	Node->next = (lian*)malloc(sizeof(lian));
+	Node = Node->next;
+	Node->num = e;
+	Node->next = NULL;
+}
+
+int main123()
+{
+	lian* head = (lian*)malloc(sizeof(lian)),*Node=head;
+	int num;
+	for (int i = 0; i < 5; i++) {
+		scanf("%d", &num);
+		Node->next = (lian*)malloc(sizeof(lian));
+		Node = Node->next;
+		Node->num = num;
+		Node->next = NULL;
+	}
+	insert(head, 6);
+	int a = 2;
+	printf("%d", ((3>5)&&(4>5)));
+	return 0;
+}
+
+//输入一个 3 x 3 的矩阵，将每行中最大的数字放到该行的第一的位置上，然后输出该矩阵
+int mainzoom()
+{
+	double a[3][3], max;
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
+			scanf("%lf", &a[i][j]);
+	for (int i = 0; i < 3; i++) {
+		for (int j = 1; j < 3; j++) {
+			max = a[i][0];
+			if (max < a[i][j]) {
+				a[i][0] = a[i][j];
+				a[i][j] = max;
+				max = a[i][0];
+			}
+		}
+
+	}		
+	for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++)
+				printf("%lf", a[i][j]);
+			printf("\n");
+		}
+	return 0;
+}
+
+//在一个升序的链表中插入一个元素，要求插入任意元素后使得链表依然保存升序（假设链表有 5 个元素）。
+struct data1 {
+	Element num;
+	data1* next;
+};
+
+void insert(data1* L, Element e)
+{
+	while (L->next!=NULL && L->next->num < e) {
+		L = L->next;
+	}
+	data1* temp = (data1*)malloc(sizeof(data1));
+	temp -> num = e;
+	temp->next = L->next;
+	L->next = temp;
+
+}
+int main456()
+{
+	data1* head = (data1*)malloc(sizeof(data1)), * Node = head;
+	int num;
+	for (int i = 0; i < 5; i++) {
+		scanf("%d", &num);
+		Node->next = (data1*)malloc(sizeof(data1));
+		Node = Node->next;
+		Node->num = num;
+		Node->next = NULL;
+	}
+	insert(head, 6);
+	return 0;
+}
+
+
+//2．输入20个数，将它们按照从小到大的次序输出。（20分）
+int cmp12(const void* a, const void* b) {
+	int* _a = (int*)a;
+	int* _b = (int*)b;
+	return *_a  - *_b;
+}
+
+bool cmp13(int a,int b){
+	return a > b;
+}
+/*
+#include<algorithm>
+int main()
+{
+	int num[20];
+	for (int i = 20; i > 0; i--)
+		num[20 - i] = i;
+	qsort(&num[0], 20, sizeof(int),cmp12);
+	std::sort(num, num + 20, cmp13);
+	for(int i=0;i<20;i++)
+	printf("%d ", num[i]);
+	return 0;
+}
+*/
+
+int del(int* num) {
+	int n = 10;
+	for (int i = 0; i < n; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (num[i] == num[j]) {
+				for (int k = j; k < n; k++)
+					num[k] = num[k + 1];
+				n--;
+				i--;
+			}
+		}
+	}
+	return n;
+}
+
+int main233()
+{
+	int num[10] = {1,6,2,3,2,3,3,5,6,3};
+	int n = del(num);
+	for (int i = 0; i < n; i++)
+		printf("%d\n", num[i]);
+	return 0;
 }
